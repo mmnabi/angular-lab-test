@@ -4,17 +4,24 @@
       <h3 class="panel-title">Registration Form <small>Lab Test</small></h3>
     </div>
     <div class="panel-body">
-      <form role="form">
+      <form [formGroup]="service.formModel" autocomplete="off" role="form">
         <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-              <input type="text" name="first_name" id="first_name" class="form-control input-sm"
-                placeholder="First Name">
+              <input type="text" name="first_name" id="first_name" class="form-control required input-sm"
+                formControlName="FirstName" placeholder="First Name">
+              <label class="text-danger"
+                *ngIf="service.formModel.get('FirstName').touched && service.formModel.get('FirstName').errors?.required">First
+                Name is mandatory.</label>
             </div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-              <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+              <input type="text" name="last_name" id="last_name" class="form-control required input-sm"
+                formControlName="LastName" placeholder="Last Name">
+              <label class="text-danger"
+                *ngIf="service.formModel.get('LastName').touched && service.formModel.get('LastName').errors?.required">Last
+                Name is mandatory.</label>
             </div>
           </div>
         </div>
@@ -22,32 +29,57 @@
         <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-              <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+              <input type="email" name="email" id="email" class="form-control required input-sm" formControlName="Email"
+                placeholder="Email Address">
+              <label class="text-danger"
+                *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Email
+                is mandatory.</label>
+              <label class="text-danger"
+                *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Email is
+                mandatory.</label>
             </div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-              <input type="phone" name="phone" id="phone" class="form-control input-sm" placeholder="Phone">
+              <input type="phone" name="phone" id="phone" class="form-control required input-sm"
+                formControlName="MobileNo" placeholder="Phone">
+              <label class="text-danger"
+                *ngIf="service.formModel.get('MobileNo').touched && service.formModel.get('MobileNo').errors?.required">Mobile
+                No is mandatory.</label>
             </div>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" formGroupName="Passwords">
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
-              <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+              <input type="password" name="password" id="password" class="form-control required input-sm"
+                formControlName="Password" placeholder="Password">
+              <label class="text-danger"
+                *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Please
+                provide password.</label>
             </div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
               <input type="password" name="password_confirmation" id="password_confirmation"
-                class="form-control input-sm" placeholder="Confirm Password">
+                class="form-control required input-sm" formControlName="ConfirmPassword" placeholder="Confirm Password">
+              <label class="text-danger"
+                *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Please
+                provide the password again.</label>
+              <label class="text-danger"
+                *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Passwords
+                does not match.</label>
             </div>
           </div>
         </div>
 
         <div class="form-group">
-          <input type="address" name="address" id="address" class="form-control input-sm" placeholder="Address">
+          <input type="address" name="address" id="address" class="form-control required input-sm"
+            formControlName="Address" placeholder="Address">
+          <label class="text-danger"
+            *ngIf="service.formModel.get('Address').touched && service.formModel.get('Address').errors?.required">Please
+            provide your address.</label>
         </div>
 
         <input type="submit" value="Register" class="btn btn-info btn-block">
