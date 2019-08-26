@@ -4,7 +4,7 @@
       <h3 class="panel-title">Registration Form <small>Lab Test</small></h3>
     </div>
     <div class="panel-body">
-      <form [formGroup]="service.formModel" autocomplete="off" role="form">
+      <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
         <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">

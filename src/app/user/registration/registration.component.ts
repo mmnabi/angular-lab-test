@@ -11,6 +11,24 @@ export class RegistrationComponent implements OnInit {
   constructor(public service: UserService) { }
 
   ngOnInit() {
+    this.service.formModel.reset();
+  }
+
+  onSubmit() {
+    this.service.register().subscribe(
+      (res: any) => {
+        if (res.userId > 0)
+          this.service.formModel.reset();
+        else {
+          res.errors.forEach(element => {
+            console.log(element);
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }
