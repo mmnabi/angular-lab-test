@@ -12,7 +12,7 @@ export class UserService {
   formModel = this.formBuilder.group({
     FirstName: ['', Validators.required],
     LastName: ['', Validators.required],
-    Email: ['', Validators.required],
+    Email: ['', [Validators.required, Validators.email]],
     Passwords: this.formBuilder.group({
       Password: ['', Validators.required],
       ConfirmPassword: ['', Validators.required]
